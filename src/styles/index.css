@@ -1,0 +1,204 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens for the portfolio.
+ * Dark-first theme. All values are overridden via the [data-theme="light"]
+ * selector so a single file drives both modes.
+ */
+
+:root {
+  /* Accent: a restrained cyan/teal used for highlights and CTAs. */
+  --color-accent: #22d3ee;
+  --color-accent-foreground: #0b1316;
+
+  /* Secondary: a warm amber used sparingly for emphasis. */
+  --color-secondary: #f59e0b;
+  --color-secondary-foreground: #1a1206;
+
+  /* Surface hierarchy. */
+  --color-background: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-2: #161616;
+  --color-surface-3: #1d1d1d;
+
+  /* Text. */
+  --color-foreground: #f5f5f5;
+  --color-muted: #a1a1a1;
+  --color-muted-foreground: #737373;
+
+  /* Borders. */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+
+  /* Typography tokens. */
+  --font-ui:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* Motion tokens. */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --duration-hero: 700ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snappy: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme='light'] {
+  --color-accent: #0891b2;
+  --color-accent-foreground: #f8fafc;
+  --color-secondary: #d97706;
+  --color-secondary-foreground: #fffbeb;
+
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f4f5;
+  --color-surface-3: #e4e4e7;
+
+  --color-foreground: #0a0a0a;
+  --color-muted: #52525b;
+  --color-muted-foreground: #71717a;
+
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.16);
+}
+
+/* Respect reduced motion globally. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-hero: 0ms;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---- Base element styles ---- */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+  overflow-x: hidden;
+}
+
+/* Focus states: always visible, never removed. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  color: var(--color-foreground);
+}
+
+/* Links inherit color and show an underline on hover only. */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Remove default focus ring from mouse users but keep it for keyboard. */
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduce layout shift from images. */
+img[loading='lazy'] {
+  content-visibility: auto;
+}
+
+/* Scrollbar: subtle, only on desktop. */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 9999px;
+    border: 2px solid var(--color-background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted);
+  }
+}
+
+/* Utility: screen-reader-only helper. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Utility: container for the top scroll progress bar. */
+.scroll-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 2px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  transition: width 0.1s linear;
+}
