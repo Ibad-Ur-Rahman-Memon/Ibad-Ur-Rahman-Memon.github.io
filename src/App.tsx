@@ -1,12 +1,13 @@
 import { Header } from '@/components/layout/Header';
 import { PageContainer } from '@/components/ui/PageContainer';
+import { HeroSection } from '@/components/sections/HeroSection';
+import { AboutSection } from '@/components/sections/AboutSection';
 
 /**
  * Application shell.
  *
- * Phase 3A only: provides the layout foundation (header, container,
- * theme-aware page background). Portfolio sections are intentionally
- * not yet implemented.
+ * Phase 3B.1: Hero and About sections are now populated with verified
+ * data. The remaining sections are intentionally still placeholders.
  */
 function App() {
   return (
@@ -16,30 +17,8 @@ function App() {
       </a>
       <Header />
       <main id="main" className="flex-1">
-        <section id="top" className="section">
-          <PageContainer>
-            <div className="flex flex-col items-start gap-6 py-12 sm:py-16">
-              <span className="eyebrow">Portfolio</span>
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-                Engineering foundation.
-              </h1>
-              <p className="max-w-2xl text-muted-foreground">
-                Design system, navigation, and responsive layout shell. Portfolio content will be
-                added in the next phase.
-              </p>
-            </div>
-          </PageContainer>
-        </section>
-        <section id="about" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">01</span>
-              <h2>About</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
+        <HeroSection />
+        <AboutSection />
         <section id="skills" className="section border-t border-border">
           <PageContainer>
             <div className="section-heading">
