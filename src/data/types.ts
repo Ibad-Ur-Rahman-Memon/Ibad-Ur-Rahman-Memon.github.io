@@ -19,12 +19,13 @@ export interface SkillCategory {
   readonly skills: readonly Skill[];
 }
 
-/** One professional role / internship. */
+/** One professional role / internship. `roles` supports multiple roles at one organization. */
 export interface Experience {
   readonly organization: string;
   readonly role: string;
+  readonly roles?: readonly string[];
   readonly location?: string;
-  readonly startDate: string;
+  readonly startDate?: string;
   readonly endDate?: string;
   readonly current?: boolean;
   readonly responsibilities: readonly string[];
@@ -79,7 +80,15 @@ export interface Achievement {
   readonly description?: string;
 }
 
-/** One leadership or extracurricular role (kept separate from employment). */
+/** One academic scholarship or financial support award. */
+export interface Scholarship {
+  readonly name: string;
+  readonly coverage: string;
+  readonly institution?: string;
+  readonly period?: string;
+}
+
+/** One leadership or extracurricular role (kept separate from employment history). */
 export interface LeadershipExperience {
   readonly organization: string;
   readonly role: string;
@@ -113,6 +122,7 @@ export interface Profile {
   readonly name: string;
   readonly title: string;
   readonly summary: string;
+  readonly additionalContext?: string;
   readonly location?: string;
   readonly email?: string;
   readonly phone?: string;
@@ -120,4 +130,5 @@ export interface Profile {
   readonly resumeUrl?: string;
   readonly social: readonly ContactChannel[];
   readonly interests?: readonly string[];
+  readonly languages?: readonly string[];
 }
