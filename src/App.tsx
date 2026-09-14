@@ -1,15 +1,135 @@
-import React from 'react';
+import { Header } from '@/components/layout/Header';
+import { PageContainer } from '@/components/ui/PageContainer';
 
+/**
+ * Application shell.
+ *
+ * Phase 3A only: provides the layout foundation (header, container,
+ * theme-aware page background). Portfolio sections are intentionally
+ * not yet implemented.
+ */
 function App() {
   return (
-    <main id="main" className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-5xl px-6 py-12">
-        <h1 className="text-4xl font-bold tracking-tight">Portfolio</h1>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          Foundation scaffold. Content will be added in the next stage.
-        </p>
-      </div>
-    </main>
+    <div className="min-h-screen bg-background text-foreground">
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <Header />
+      <main id="main" className="flex-1">
+        <section id="top" className="section">
+          <PageContainer>
+            <div className="flex flex-col items-start gap-6 py-12 sm:py-16">
+              <span className="eyebrow">Portfolio</span>
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+                Engineering foundation.
+              </h1>
+              <p className="max-w-2xl text-muted-foreground">
+                Design system, navigation, and responsive layout shell. Portfolio content will be
+                added in the next phase.
+              </p>
+            </div>
+          </PageContainer>
+        </section>
+        <section id="about" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">01</span>
+              <h2>About</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="skills" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">02</span>
+              <h2>Skills</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="experience" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">03</span>
+              <h2>Experience</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="projects" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">04</span>
+              <h2>Projects</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="education" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">05</span>
+              <h2>Education</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="publication" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">06</span>
+              <h2>Publication</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="leadership" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">07</span>
+              <h2>Leadership</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="certifications" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">08</span>
+              <h2>Certifications</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+        <section id="contact" className="section border-t border-border">
+          <PageContainer>
+            <div className="section-heading">
+              <span className="eyebrow">09</span>
+              <h2>Contact</h2>
+              <p>Section placeholder.</p>
+            </div>
+            <p className="text-muted-foreground">Content coming soon.</p>
+          </PageContainer>
+        </section>
+      </main>
+      <footer className="border-t border-border">
+        <PageContainer>
+          <div className="flex flex-col items-center justify-between gap-3 py-6 text-sm text-muted-foreground sm:flex-row">
+            <p>© {new Date().getFullYear()} Ibad Ur Rahman.</p>
+            <p>Built with React, TypeScript, and Tailwind CSS.</p>
+          </div>
+        </PageContainer>
+      </footer>
+    </div>
   );
 }
 
