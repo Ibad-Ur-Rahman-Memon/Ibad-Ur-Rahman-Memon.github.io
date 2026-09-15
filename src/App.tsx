@@ -1,13 +1,16 @@
-import { Header } from '@/components/layout/Header';
+﻿import { Header } from '@/components/layout/Header';
 import { PageContainer } from '@/components/ui/PageContainer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { AboutSection } from '@/components/sections/AboutSection';
+import { SkillsSection } from '@/components/sections/SkillsSection';
+import { ExperienceSection } from '@/components/sections/ExperienceSection';
 
 /**
  * Application shell.
  *
- * Phase 3B.1: Hero and About sections are now populated with verified
- * data. The remaining sections are intentionally still placeholders.
+ * Phase 3C: Skills and Experience sections are now populated with
+ * verified data. The remaining sections are intentionally still
+ * placeholders.
  */
 function App() {
   return (
@@ -19,26 +22,8 @@ function App() {
       <main id="main" className="flex-1">
         <HeroSection />
         <AboutSection />
-        <section id="skills" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">02</span>
-              <h2>Skills</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
-        <section id="experience" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">03</span>
-              <h2>Experience</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
+        <SkillsSection />
+        <ExperienceSection />
         <section id="projects" className="section border-t border-border">
           <PageContainer>
             <div className="section-heading">
@@ -103,7 +88,7 @@ function App() {
       <footer className="border-t border-border">
         <PageContainer>
           <div className="flex flex-col items-center justify-between gap-3 py-6 text-sm text-muted-foreground sm:flex-row">
-            <p>© {new Date().getFullYear()} Ibad Ur Rahman.</p>
+            <p>{new Date().getFullYear()} Ibad Ur Rahman.</p>
             <p>Built with React, TypeScript, and Tailwind CSS.</p>
           </div>
         </PageContainer>
