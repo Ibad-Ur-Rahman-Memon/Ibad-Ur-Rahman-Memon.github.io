@@ -7,13 +7,14 @@ import { ExperienceSection } from '@/components/sections/ExperienceSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
 import { EducationSection } from '@/components/sections/EducationSection';
 import { PublicationSection } from '@/components/sections/PublicationSection';
+import { LeadershipSection } from '@/components/sections/LeadershipSection';
+import { CertificationsSection } from '@/components/sections/CertificationsSection';
 
 /**
  * Application shell.
  *
- * Phase 3E: Education and Publication sections are now populated with
- * verified data. Leadership, Certifications, and Contact remain
- * placeholders.
+ * Phase 3F: Leadership and Certifications sections are now populated
+ * with verified data. The Contact section remains a placeholder.
  */
 function App() {
   return (
@@ -30,26 +31,8 @@ function App() {
         <ProjectsSection />
         <EducationSection />
         <PublicationSection />
-        <section id="leadership" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">07</span>
-              <h2>Leadership</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
-        <section id="certifications" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">08</span>
-              <h2>Certifications</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
+        <LeadershipSection />
+        <CertificationsSection />
         <section id="contact" className="section border-t border-border">
           <PageContainer>
             <div className="section-heading">
