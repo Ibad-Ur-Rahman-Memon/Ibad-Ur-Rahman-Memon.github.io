@@ -4,13 +4,13 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
+import { ProjectsSection } from '@/components/sections/ProjectsSection';
 
 /**
  * Application shell.
  *
- * Phase 3C: Skills and Experience sections are now populated with
- * verified data. The remaining sections are intentionally still
- * placeholders.
+ * Phase 3D: Projects section is now populated with verified data.
+ * The remaining sections are intentionally still placeholders.
  */
 function App() {
   return (
@@ -24,16 +24,7 @@ function App() {
         <AboutSection />
         <SkillsSection />
         <ExperienceSection />
-        <section id="projects" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">04</span>
-              <h2>Projects</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
+        <ProjectsSection />
         <section id="education" className="section border-t border-border">
           <PageContainer>
             <div className="section-heading">
