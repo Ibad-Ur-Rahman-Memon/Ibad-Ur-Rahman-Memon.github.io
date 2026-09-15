@@ -5,12 +5,15 @@ import { AboutSection } from '@/components/sections/AboutSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
+import { EducationSection } from '@/components/sections/EducationSection';
+import { PublicationSection } from '@/components/sections/PublicationSection';
 
 /**
  * Application shell.
  *
- * Phase 3D: Projects section is now populated with verified data.
- * The remaining sections are intentionally still placeholders.
+ * Phase 3E: Education and Publication sections are now populated with
+ * verified data. Leadership, Certifications, and Contact remain
+ * placeholders.
  */
 function App() {
   return (
@@ -25,26 +28,8 @@ function App() {
         <SkillsSection />
         <ExperienceSection />
         <ProjectsSection />
-        <section id="education" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">05</span>
-              <h2>Education</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
-        <section id="publication" className="section border-t border-border">
-          <PageContainer>
-            <div className="section-heading">
-              <span className="eyebrow">06</span>
-              <h2>Publication</h2>
-              <p>Section placeholder.</p>
-            </div>
-            <p className="text-muted-foreground">Content coming soon.</p>
-          </PageContainer>
-        </section>
+        <EducationSection />
+        <PublicationSection />
         <section id="leadership" className="section border-t border-border">
           <PageContainer>
             <div className="section-heading">
