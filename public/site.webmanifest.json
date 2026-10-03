@@ -1,17 +1,16 @@
 {
-  "name": "Portfolio",
-  "short_name": "Portfolio",
-  "description": "Personal portfolio website.",
-  "start_url": "/",
-  "scope": "/",
+  "name": "Ibad Ur Rahman Portfolio",
+  "short_name": "Ibad Ur Rahman",
+  "description": "Computer Systems Engineer portfolio featuring AI/ML, Generative AI, software engineering, and computer systems projects.",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#0a0a0a",
   "orientation": "portrait-primary",
-  "categories": ["productivity", "utilities"],
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

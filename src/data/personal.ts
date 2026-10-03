@@ -17,7 +17,7 @@ export const profile: Profile = {
   email: 'ibad.cse@gmail.com',
   phone: undefined,
   avatar: '/images/profile.jpg',
-  resumeUrl: '/resume/Ibad-Ur-Rahman-Detailed-Resume.pdf',
+  resumeUrl: './resume/Ibad-Ur-Rahman-Detailed-Resume.pdf',
   social: [
     {
       type: 'email',

@@ -39,17 +39,21 @@ export function ExperienceSection() {
               <div className="card card-hover p-5">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
-                    <h3 className="text-base font-semibold text-foreground">{role.organization}</h3>
-                    <p className="text-sm text-accent">{role.role}</p>
+                    <h3 className="text-base font-semibold text-foreground sm:text-lg">
+                      {role.organization}
+                    </h3>
+                    <p className="text-sm text-accent sm:text-base">{role.role}</p>
                     {role.roles && role.roles.length > 1 ? (
                       <p className="mt-1 text-xs text-muted-foreground">
                         Also served as: {role.roles.filter((r) => r !== role.role).join(' · ')}
                       </p>
                     ) : null}
                   </div>
-                  <div className="mt-1 text-right text-xs text-muted-foreground sm:mt-0">
-                    {formatDateRange(role.startDate, role.endDate, role.current)}
-                  </div>
+                  {role.startDate ? (
+                    <div className="mt-1 text-left text-sm font-medium text-muted-foreground sm:mt-0 sm:shrink-0 sm:text-right">
+                      {formatDateRange(role.startDate, role.endDate, role.current)}
+                    </div>
+                  ) : null}
                 </div>
 
                 {role.location ? (
@@ -75,7 +79,7 @@ export function ExperienceSection() {
                     {role.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="inline-flex items-center rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-muted-foreground"
+                        className="inline-flex items-center rounded-md border border-border bg-surface px-2.5 py-1 text-sm text-muted-foreground"
                       >
                         {tech}
                       </span>

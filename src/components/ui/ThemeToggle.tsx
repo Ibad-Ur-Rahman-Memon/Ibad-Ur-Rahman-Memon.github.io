@@ -7,6 +7,7 @@ function SunIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -24,6 +25,7 @@ function MoonIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -60,10 +62,11 @@ export function ThemeToggle() {
       <button
         type="button"
         aria-label="Toggle theme"
-        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface text-muted hover:bg-surface-elevated hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+        className="icon-button inline-flex h-9 w-9 items-center justify-center rounded-md border border-control bg-surface text-muted transition-colors hover:bg-surface-elevated hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
         disabled
       >
         <span className="sr-only">Toggle theme</span>
+        <ThemeIcon isDark={isDark} />
       </button>
     );
   }
@@ -74,10 +77,27 @@ export function ThemeToggle() {
       aria-label={`Switch to ${nextTheme} mode`}
       title={`Switch to ${nextTheme} mode`}
       onClick={() => setTheme(nextTheme)}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface text-muted transition-colors hover:bg-surface-elevated hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+      className="icon-button inline-flex h-9 w-9 items-center justify-center rounded-md border border-control bg-surface text-muted transition-colors hover:bg-surface-elevated hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
     >
       <span className="sr-only">Toggle theme</span>
-      {isDark ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
+      <ThemeIcon isDark={isDark} />
     </button>
+  );
+}
+
+function ThemeIcon({ isDark }: { isDark: boolean }) {
+  return (
+    <span aria-hidden="true" className="relative block h-4 w-4">
+      <SunIcon
+        className={`absolute inset-0 h-4 w-4 transition-[opacity,transform] duration-200 ${
+          isDark ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
+        }`}
+      />
+      <MoonIcon
+        className={`absolute inset-0 h-4 w-4 transition-[opacity,transform] duration-200 ${
+          isDark ? 'scale-75 opacity-0' : 'scale-100 opacity-100'
+        }`}
+      />
+    </span>
   );
 }

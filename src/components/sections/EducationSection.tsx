@@ -39,15 +39,21 @@ export function EducationSection() {
               <div className="card card-hover p-5">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
-                    <h3 className="text-base font-semibold text-foreground">{item.institution}</h3>
-                    {item.degree ? <p className="text-sm text-accent">{item.degree}</p> : null}
+                    <h3 className="text-base font-semibold text-foreground sm:text-lg">
+                      {item.institution}
+                    </h3>
+                    {item.degree ? (
+                      <p className="text-sm text-accent sm:text-base">{item.degree}</p>
+                    ) : null}
                     {item.fieldOfStudy ? (
                       <p className="mt-0.5 text-xs text-muted-foreground">{item.fieldOfStudy}</p>
                     ) : null}
                   </div>
-                  <div className="mt-1 text-right text-xs text-muted-foreground sm:mt-0">
-                    {formatDateRange(item.startDate, item.endDate)}
-                  </div>
+                  {item.startDate ? (
+                    <div className="mt-1 text-left text-sm font-medium text-muted-foreground sm:mt-0 sm:shrink-0 sm:text-right">
+                      {formatDateRange(item.startDate, item.endDate)}
+                    </div>
+                  ) : null}
                 </div>
 
                 {item.location ? (

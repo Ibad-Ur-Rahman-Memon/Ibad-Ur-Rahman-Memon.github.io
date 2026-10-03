@@ -166,7 +166,7 @@ function AccountLinks({ className }: { className?: string }) {
           title={account.label}
           target={account.type === 'email' ? undefined : '_blank'}
           rel={account.type === 'email' ? undefined : 'noreferrer'}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface text-muted transition-colors hover:bg-surface-elevated hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+          className="icon-button inline-flex h-9 w-9 items-center justify-center rounded-md border border-control bg-surface text-muted transition-colors hover:bg-surface-elevated hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
         >
           <AccountIcon type={account.type} />
         </a>

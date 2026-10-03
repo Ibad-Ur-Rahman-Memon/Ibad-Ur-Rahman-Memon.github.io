@@ -6,7 +6,7 @@ interface StaggerProps {
   children: ReactNode;
   className?: string;
   as?: 'div' | 'ul';
-  /** Milliseconds between each child's entrance. */
+  /** Seconds between each child's entrance. */
   stagger?: number;
 }
 
@@ -17,7 +17,7 @@ interface StaggerProps {
  * `prefers-reduced-motion` is set, children render immediately with no
  * stagger and no animation.
  */
-export function Stagger({ children, className, as = 'div', stagger = 0.06 }: StaggerProps) {
+export function Stagger({ children, className, as = 'div', stagger = 0.04 }: StaggerProps) {
   const reduced = useReducedMotion();
 
   if (reduced) {

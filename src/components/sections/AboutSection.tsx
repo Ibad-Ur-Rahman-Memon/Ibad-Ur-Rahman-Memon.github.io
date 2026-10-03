@@ -22,7 +22,7 @@ export function AboutSection() {
         </Reveal>
 
         <Reveal delay={80} distance={16}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10 lg:items-start">
             <div>
               <p className="text-lg font-medium text-foreground sm:text-xl">{profile.name}</p>
               <p className="mt-1 text-muted-foreground">{profile.title}</p>
@@ -31,11 +31,8 @@ export function AboutSection() {
               ) : null}
             </div>
 
-            <div className="space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              <p>{profile.summary}</p>
-              {profile.additionalContext ? (
-                <p className="text-muted-foreground/90">{profile.additionalContext}</p>
-              ) : null}
+            <div className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {profile.additionalContext ? <p>{profile.additionalContext}</p> : null}
             </div>
           </div>
         </Reveal>

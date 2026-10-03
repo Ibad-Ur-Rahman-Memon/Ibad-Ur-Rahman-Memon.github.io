@@ -36,7 +36,7 @@ export function ProjectsSection() {
               <motion.article
                 key={project.slug}
                 variants={staggerChild}
-                className="card card-hover flex flex-col p-6"
+                className="card card-hover project-card featured-project-card flex flex-col p-6"
               >
                 <ProjectCardContents project={project} featured />
               </motion.article>
@@ -56,7 +56,7 @@ export function ProjectsSection() {
                 <motion.article
                   key={project.slug}
                   variants={staggerChild}
-                  className="card card-hover flex flex-col p-5"
+                  className="card card-hover project-card flex flex-col p-5"
                 >
                   <ProjectCardContents project={project} featured={false} />
                 </motion.article>
@@ -91,7 +91,13 @@ function ProjectCardContents({ project, featured = false }: ProjectCardContentsP
         ) : null}
       </div>
 
-      <h3 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
+      <h3
+        className={
+          featured
+            ? 'text-lg font-semibold leading-snug text-foreground sm:text-xl'
+            : 'text-base font-semibold leading-snug text-foreground sm:text-lg'
+        }
+      >
         {project.title}
       </h3>
 
@@ -104,7 +110,7 @@ function ProjectCardContents({ project, featured = false }: ProjectCardContentsP
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="inline-flex items-center rounded-md border border-border bg-surface px-2 py-0.5 text-xs text-muted-foreground"
+              className="inline-flex items-center rounded-md border border-border bg-surface px-2.5 py-1 text-sm text-muted-foreground"
             >
               {tech}
             </span>
@@ -136,7 +142,7 @@ function ProjectCardContents({ project, featured = false }: ProjectCardContentsP
           </a>
         ) : null}
         {!hasGithub && !hasLive ? (
-          <span className="text-xs text-muted-foreground/70">No external links available</span>
+          <span className="text-xs text-muted-foreground">No external links available</span>
         ) : null}
       </div>
     </>

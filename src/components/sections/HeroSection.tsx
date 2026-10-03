@@ -24,7 +24,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_70%)]"
       />
       <PageContainer className="relative">
-        <div className="flex flex-col items-start gap-8 py-16 sm:py-20 lg:py-24">
+        <div className="flex flex-col items-start gap-6">
           <Reveal delay={0}>
             <span className="eyebrow">Portfolio</span>
           </Reveal>
@@ -41,9 +41,6 @@ export function HeroSection() {
           <Reveal delay={160} distance={20}>
             <div className="max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
               <p>{profile.summary}</p>
-              {profile.additionalContext ? (
-                <p className="text-muted-foreground/90">{profile.additionalContext}</p>
-              ) : null}
             </div>
           </Reveal>
 
@@ -55,11 +52,6 @@ export function HeroSection() {
               <AnchorButton href={profile.resumeUrl} variant="secondary" size="lg" download>
                 Download Resume
               </AnchorButton>
-            </div>
-          </Reveal>
-
-          <Reveal delay={320} distance={16}>
-            <div className="flex flex-wrap items-center gap-3 pt-2 text-sm text-muted-foreground">
               {github ? (
                 <AnchorButton
                   href={github.href}

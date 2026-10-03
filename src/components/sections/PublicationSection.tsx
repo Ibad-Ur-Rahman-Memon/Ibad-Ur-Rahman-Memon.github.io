@@ -35,30 +35,45 @@ export function PublicationSection() {
                 variants={staggerChild}
                 className="card card-hover p-5"
               >
-                <h3 className="text-base font-semibold leading-snug text-foreground">
+                <h3 className="text-lg font-semibold leading-snug text-foreground sm:text-xl">
                   {pub.title}
                 </h3>
-                {pub.venue ? <p className="mt-1 text-sm text-accent">{pub.venue}</p> : null}
-                {pub.date ? <p className="mt-1 text-xs text-muted-foreground">{pub.date}</p> : null}
+                {pub.venue ? (
+                  <p className="mt-1 text-base font-medium text-accent">{pub.venue}</p>
+                ) : null}
+                {pub.date ? <p className="mt-1 text-sm text-muted-foreground">{pub.date}</p> : null}
                 {pub.description ? (
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {pub.description}
                   </p>
                 ) : null}
-                {pub.methodology ? (
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    <span className="text-foreground/80">Methodology:</span> {pub.methodology}
-                  </p>
-                ) : null}
-                {pub.result ? (
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    <span className="text-foreground/80">Result:</span> {pub.result}
-                  </p>
-                ) : null}
-                {pub.dataset ? (
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    <span className="text-foreground/80">Dataset:</span> {pub.dataset}
-                  </p>
+                {pub.methodology || pub.result || pub.dataset ? (
+                  <dl className="mt-4 grid gap-x-6 gap-y-3 border-t border-border pt-4 sm:grid-cols-2">
+                    {pub.methodology ? (
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          Methodology
+                        </dt>
+                        <dd className="mt-1 text-sm text-foreground/90">{pub.methodology}</dd>
+                      </div>
+                    ) : null}
+                    {pub.result ? (
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          Result
+                        </dt>
+                        <dd className="mt-1 text-sm font-semibold text-accent">{pub.result}</dd>
+                      </div>
+                    ) : null}
+                    {pub.dataset ? (
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          Dataset
+                        </dt>
+                        <dd className="mt-1 text-sm text-foreground/90">{pub.dataset}</dd>
+                      </div>
+                    ) : null}
+                  </dl>
                 ) : null}
               </motion.li>
             ))}

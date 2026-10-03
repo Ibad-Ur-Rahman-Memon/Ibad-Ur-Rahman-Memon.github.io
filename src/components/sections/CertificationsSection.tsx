@@ -67,7 +67,7 @@ export function CertificationsSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-base font-semibold leading-snug text-foreground">
+                  <h3 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
                     {cert.name}
                   </h3>
 
@@ -88,7 +88,7 @@ export function CertificationsSection() {
                       href={cert.credentialUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-2 inline-flex text-xs text-accent hover:underline"
+                      className="mt-2 inline-flex text-sm font-medium text-accent hover:underline"
                       aria-label={`Verify ${cert.name} credential`}
                     >
                       Verify credential
