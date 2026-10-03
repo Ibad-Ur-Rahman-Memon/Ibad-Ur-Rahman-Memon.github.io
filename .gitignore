@@ -77,3 +77,8 @@ vite.config.tsbuildinfo
 # OS
 .DS_Store
 Thumbs.db
+# Kilo Code workspace
+.kilo/
+
+# Kilo Code workspace
+.kilo/
