@@ -1,5 +1,8 @@
 import { education } from '@/data/education';
 import { PageContainer } from '@/components/ui/PageContainer';
+import { Reveal } from '@/components/motion/Reveal';
+import { Stagger, staggerChild } from '@/components/motion/Stagger';
+import { motion } from 'motion/react';
 
 /**
  * Education section.
@@ -7,21 +10,26 @@ import { PageContainer } from '@/components/ui/PageContainer';
  * Renders verified academic history in a clean timeline layout.
  * Data is already ordered most-recent-first; no reordering is applied.
  * No grades, CGPA, or coursework are displayed — none exist in the data.
+ *
+ * Entrance motion: heading reveals, then the education entries stagger in.
  */
 export function EducationSection() {
   return (
     <section id="education" className="section border-t border-border">
       <PageContainer>
-        <div className="section-heading">
-          <span className="eyebrow">05</span>
-          <h2>Education</h2>
-          <p>Academic background and qualifications.</p>
-        </div>
+        <Reveal>
+          <div className="section-heading">
+            <span className="eyebrow">05</span>
+            <h2>Education</h2>
+            <p>Academic background and qualifications.</p>
+          </div>
+        </Reveal>
 
-        <ol className="relative ml-3 space-y-6 border-l border-border pl-6">
+        <Stagger className="relative ml-3 space-y-6 border-l border-border pl-6">
           {education.map((item, index) => (
-            <li
+            <motion.li
               key={`${item.institution}-${item.degree ?? 'unknown'}-${index}`}
+              variants={staggerChild}
               className="relative"
             >
               <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full border border-border bg-background">
@@ -50,9 +58,9 @@ export function EducationSection() {
                   <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
                 ) : null}
               </div>
-            </li>
+            </motion.li>
           ))}
-        </ol>
+        </Stagger>
       </PageContainer>
     </section>
   );

@@ -1,5 +1,8 @@
 import { leadership } from '@/data/leadership';
 import { PageContainer } from '@/components/ui/PageContainer';
+import { Reveal } from '@/components/motion/Reveal';
+import { Stagger, staggerChild } from '@/components/motion/Stagger';
+import { motion } from 'motion/react';
 
 /**
  * Leadership section.
@@ -8,23 +11,31 @@ import { PageContainer } from '@/components/ui/PageContainer';
  * layout consistent with Experience and Education. No metrics,
  * achievements, or organizations are invented — only the data present
  * in src/data/leadership.ts is shown.
+ *
+ * Entrance motion: heading reveals, then the leadership entries stagger in.
  */
 export function LeadershipSection() {
   return (
     <section id="leadership" className="section border-t border-border">
       <PageContainer>
-        <div className="section-heading">
-          <span className="eyebrow">07</span>
-          <h2>Leadership</h2>
-          <p>Extracurricular roles and event coordination.</p>
-        </div>
+        <Reveal>
+          <div className="section-heading">
+            <span className="eyebrow">07</span>
+            <h2>Leadership</h2>
+            <p>Extracurricular roles and event coordination.</p>
+          </div>
+        </Reveal>
 
         {leadership.length === 0 ? (
           <p className="text-muted-foreground">Leadership details will be added once verified.</p>
         ) : (
-          <ol className="relative ml-3 space-y-6 border-l border-border pl-6">
+          <Stagger className="relative ml-3 space-y-6 border-l border-border pl-6">
             {leadership.map((item, index) => (
-              <li key={`${item.organization}-${item.role}-${index}`} className="relative">
+              <motion.li
+                key={`${item.organization}-${item.role}-${index}`}
+                variants={staggerChild}
+                className="relative"
+              >
                 <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full border border-border bg-background">
                   <span className="h-2 w-2 rounded-full bg-accent" />
                 </span>
@@ -55,9 +66,9 @@ export function LeadershipSection() {
                     </p>
                   ) : null}
                 </div>
-              </li>
+              </motion.li>
             ))}
-          </ol>
+          </Stagger>
         )}
       </PageContainer>
     </section>

@@ -1,5 +1,8 @@
 import { certifications } from '@/data/certifications';
 import { PageContainer } from '@/components/ui/PageContainer';
+import { Reveal } from '@/components/motion/Reveal';
+import { Stagger, staggerChild } from '@/components/motion/Stagger';
+import { motion } from 'motion/react';
 
 /**
  * Certification type badge styling. Distinct from ranking — a course
@@ -24,31 +27,36 @@ const typeClasses: Record<string, string> = {
  * `type` field distinguishes certification / course / workshop without
  * ranking one above another. Only fields present in the data are
  * displayed.
+ *
+ * Entrance motion: heading reveals, then the certification/course cards stagger in.
  */
 export function CertificationsSection() {
   return (
     <section id="certifications" className="section border-t border-border">
       <PageContainer>
-        <div className="section-heading">
-          <span className="eyebrow">08</span>
-          <h2>Certifications</h2>
-          <p>Verified courses and professional credentials.</p>
-        </div>
+        <Reveal>
+          <div className="section-heading">
+            <span className="eyebrow">08</span>
+            <h2>Certifications</h2>
+            <p>Verified courses and professional credentials.</p>
+          </div>
+        </Reveal>
 
         {certifications.length === 0 ? (
           <p className="text-muted-foreground">
             Certification details will be added once verified.
           </p>
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map((cert, index) => {
               const type = cert.type ?? 'course';
               const label = typeLabel[type] ?? typeLabel.course;
               const classes = typeClasses[type] ?? typeClasses.course;
 
               return (
-                <li
+                <motion.li
                   key={`${cert.name}-${cert.issuer ?? 'unknown'}-${index}`}
+                  variants={staggerChild}
                   className="card card-hover p-5"
                 >
                   <div className="mb-3 flex items-center gap-2">
@@ -86,10 +94,10 @@ export function CertificationsSection() {
                       Verify credential
                     </a>
                   ) : null}
-                </li>
+                </motion.li>
               );
             })}
-          </ul>
+          </Stagger>
         )}
       </PageContainer>
     </section>

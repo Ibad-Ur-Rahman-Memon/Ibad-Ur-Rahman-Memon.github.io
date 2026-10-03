@@ -1,5 +1,8 @@
 ﻿import { experience } from '@/data/experience';
 import { PageContainer } from '@/components/ui/PageContainer';
+import { Reveal } from '@/components/motion/Reveal';
+import { Stagger, staggerChild } from '@/components/motion/Stagger';
+import { motion } from 'motion/react';
 
 /**
  * Experience section.
@@ -7,20 +10,28 @@ import { PageContainer } from '@/components/ui/PageContainer';
  * Renders verified employment/internship history in a clean,
  * recruiter-friendly timeline layout. No metrics or achievements are
  * invented — only the data present in src/data/experience.ts is shown.
+ *
+ * Entrance motion: heading reveals, then the timeline entries stagger in.
  */
 export function ExperienceSection() {
   return (
     <section id="experience" className="section border-t border-border">
       <PageContainer>
-        <div className="section-heading">
-          <span className="eyebrow">03</span>
-          <h2>Experience</h2>
-          <p>Professional roles and internships.</p>
-        </div>
+        <Reveal>
+          <div className="section-heading">
+            <span className="eyebrow">03</span>
+            <h2>Experience</h2>
+            <p>Professional roles and internships.</p>
+          </div>
+        </Reveal>
 
-        <ol className="relative ml-3 space-y-8 border-l border-border pl-6">
+        <Stagger className="relative ml-3 space-y-8 border-l border-border pl-6">
           {experience.map((role, index) => (
-            <li key={`${role.organization}-${role.role}-${index}`} className="relative">
+            <motion.li
+              key={`${role.organization}-${role.role}-${index}`}
+              variants={staggerChild}
+              className="relative"
+            >
               <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full border border-border bg-background">
                 <span className="h-2 w-2 rounded-full bg-accent" />
               </span>
@@ -79,9 +90,9 @@ export function ExperienceSection() {
                   </p>
                 ) : null}
               </div>
-            </li>
+            </motion.li>
           ))}
-        </ol>
+        </Stagger>
       </PageContainer>
     </section>
   );

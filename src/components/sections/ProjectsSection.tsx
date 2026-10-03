@@ -1,5 +1,8 @@
 import { projects, featuredProjectSlugs } from '@/data/projects';
 import { PageContainer } from '@/components/ui/PageContainer';
+import { Reveal } from '@/components/motion/Reveal';
+import { Stagger, staggerChild } from '@/components/motion/Stagger';
+import { motion } from 'motion/react';
 
 /**
  * Projects section.
@@ -8,6 +11,9 @@ import { PageContainer } from '@/components/ui/PageContainer';
  * strongest visual emphasis. Remaining projects are shown in a
  * secondary grid. GitHub links are rendered only when a verified
  * `githubUrl` exists; no fake URLs are created.
+ *
+ * Entrance motion: heading reveals, then featured and additional
+ * project cards stagger in.
  */
 export function ProjectsSection() {
   const featured = projects.filter((p) => featuredProjectSlugs.includes(p.slug));
@@ -16,30 +22,46 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="section border-t border-border">
       <PageContainer>
-        <div className="section-heading">
-          <span className="eyebrow">04</span>
-          <h2>Projects</h2>
-          <p>A selection of academic, research, and applied engineering work.</p>
-        </div>
+        <Reveal>
+          <div className="section-heading">
+            <span className="eyebrow">04</span>
+            <h2>Projects</h2>
+            <p>A selection of academic, research, and applied engineering work.</p>
+          </div>
+        </Reveal>
 
         {featured.length > 0 ? (
-          <div className="grid gap-6 lg:grid-cols-2">
+          <Stagger className="grid gap-6 lg:grid-cols-2">
             {featured.map((project) => (
-              <ProjectCard key={project.slug} project={project} featured />
+              <motion.article
+                key={project.slug}
+                variants={staggerChild}
+                className="card card-hover flex flex-col p-6"
+              >
+                <ProjectCardContents project={project} featured />
+              </motion.article>
             ))}
-          </div>
+          </Stagger>
         ) : null}
 
         {other.length > 0 ? (
           <div className="mt-10">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Additional Projects
-            </h3>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Reveal delay={80}>
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                Additional Projects
+              </h3>
+            </Reveal>
+            <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {other.map((project) => (
-                <ProjectCard key={project.slug} project={project} featured={false} />
+                <motion.article
+                  key={project.slug}
+                  variants={staggerChild}
+                  className="card card-hover flex flex-col p-5"
+                >
+                  <ProjectCardContents project={project} featured={false} />
+                </motion.article>
               ))}
-            </div>
+            </Stagger>
           </div>
         ) : null}
       </PageContainer>
@@ -47,21 +69,17 @@ export function ProjectsSection() {
   );
 }
 
-interface ProjectCardProps {
+interface ProjectCardContentsProps {
   project: (typeof projects)[number];
   featured?: boolean;
 }
 
-function ProjectCard({ project, featured = false }: ProjectCardProps) {
+function ProjectCardContents({ project, featured = false }: ProjectCardContentsProps) {
   const hasGithub = Boolean(project.githubUrl);
   const hasLive = Boolean(project.liveUrl);
 
   return (
-    <article
-      className={
-        featured ? 'card card-hover flex flex-col p-6' : 'card card-hover flex flex-col p-5'
-      }
-    >
+    <>
       <div className="mb-3 flex items-center gap-2">
         <span className="inline-flex items-center rounded-md border border-border bg-surface px-2 py-0.5 text-xs font-mono text-accent">
           {project.category}
@@ -121,6 +139,6 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
           <span className="text-xs text-muted-foreground/70">No external links available</span>
         ) : null}
       </div>
-    </article>
+    </>
   );
 }

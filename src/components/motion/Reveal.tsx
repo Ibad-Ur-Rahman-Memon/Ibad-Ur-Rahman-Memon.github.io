@@ -1,5 +1,5 @@
-import { type ReactNode, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useAnimationControls } from 'motion/react';
+import { type ReactNode } from 'react';
+import { motion } from 'motion/react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 interface RevealProps {
@@ -21,43 +21,20 @@ interface RevealProps {
  */
 export function Reveal({ children, className, delay = 0, distance = 18 }: RevealProps) {
   const reduced = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const controls = useAnimationControls();
-  const y = useMotionValue(distance);
-  const opacity = useMotionValue(0);
+  const canObserveViewport = typeof IntersectionObserver !== 'undefined';
 
-  useEffect(() => {
-    if (reduced) {
-      controls.set({ opacity: 1, y: 0 });
-      return;
-    }
-    const node = ref.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (!entry.isIntersecting) return;
-        controls.start({
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] },
-        });
-        observer.disconnect();
-      },
-      { threshold: 0.15 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [reduced, controls, delay]);
+  if (reduced || !canObserveViewport) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
-      ref={ref}
       className={className}
-      style={{ y, opacity, willChange: 'transform, opacity' }}
-      animate={controls}
+      initial={{ opacity: 0, y: distance }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.5, delay: delay / 1000, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>

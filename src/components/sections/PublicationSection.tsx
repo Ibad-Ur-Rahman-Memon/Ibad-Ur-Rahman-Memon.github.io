@@ -1,5 +1,8 @@
 import { publications } from '@/data/publication';
 import { PageContainer } from '@/components/ui/PageContainer';
+import { Reveal } from '@/components/motion/Reveal';
+import { Stagger, staggerChild } from '@/components/motion/Stagger';
+import { motion } from 'motion/react';
 
 /**
  * Publication section.
@@ -7,23 +10,31 @@ import { PageContainer } from '@/components/ui/PageContainer';
  * Renders verified academic publications. The data array is the single
  * source of truth; when it is empty, a graceful empty state is shown
  * rather than fabricated content.
+ *
+ * Entrance motion: heading reveals, then the publication entries stagger in.
  */
 export function PublicationSection() {
   return (
     <section id="publication" className="section border-t border-border">
       <PageContainer>
-        <div className="section-heading">
-          <span className="eyebrow">06</span>
-          <h2>Publication</h2>
-          <p>Peer-reviewed research and academic work.</p>
-        </div>
+        <Reveal>
+          <div className="section-heading">
+            <span className="eyebrow">06</span>
+            <h2>Publication</h2>
+            <p>Peer-reviewed research and academic work.</p>
+          </div>
+        </Reveal>
 
         {publications.length === 0 ? (
           <p className="text-muted-foreground">Publication details will be added once verified.</p>
         ) : (
-          <ul className="space-y-4">
+          <Stagger className="space-y-4">
             {publications.map((pub, index) => (
-              <li key={`${pub.title}-${index}`} className="card card-hover p-5">
+              <motion.li
+                key={`${pub.title}-${index}`}
+                variants={staggerChild}
+                className="card card-hover p-5"
+              >
                 <h3 className="text-base font-semibold leading-snug text-foreground">
                   {pub.title}
                 </h3>
@@ -49,9 +60,9 @@ export function PublicationSection() {
                     <span className="text-foreground/80">Dataset:</span> {pub.dataset}
                   </p>
                 ) : null}
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </Stagger>
         )}
       </PageContainer>
     </section>
