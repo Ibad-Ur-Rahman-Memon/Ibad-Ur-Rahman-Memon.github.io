@@ -5,6 +5,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 interface StaggerProps {
   children: ReactNode;
   className?: string;
+  as?: 'div' | 'ul';
   /** Milliseconds between each child's entrance. */
   stagger?: number;
 }
@@ -16,21 +17,31 @@ interface StaggerProps {
  * `prefers-reduced-motion` is set, children render immediately with no
  * stagger and no animation.
  */
-export function Stagger({ children, className, stagger = 0.06 }: StaggerProps) {
+export function Stagger({ children, className, as = 'div', stagger = 0.06 }: StaggerProps) {
   const reduced = useReducedMotion();
 
+  if (reduced) {
+    return as === 'ul' ? (
+      <ul className={className}>{children}</ul>
+    ) : (
+      <div className={className}>{children}</div>
+    );
+  }
+
+  const MotionContainer = as === 'ul' ? motion.ul : motion.div;
+
   return (
-    <motion.div
+    <MotionContainer
       className={className}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
       variants={{
-        visible: { transition: { staggerChildren: reduced ? 0 : stagger } },
+        visible: { transition: { staggerChildren: stagger } },
       }}
     >
       {children}
-    </motion.div>
+    </MotionContainer>
   );
 }
 

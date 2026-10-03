@@ -25,7 +25,7 @@ export function ExperienceSection() {
           </div>
         </Reveal>
 
-        <Stagger className="relative ml-3 space-y-8 border-l border-border pl-6">
+        <Stagger as="ul" className="relative ml-3 space-y-8 border-l border-border pl-6">
           {experience.map((role, index) => (
             <motion.li
               key={`${role.organization}-${role.role}-${index}`}

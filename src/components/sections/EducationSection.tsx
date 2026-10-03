@@ -25,7 +25,7 @@ export function EducationSection() {
           </div>
         </Reveal>
 
-        <Stagger className="relative ml-3 space-y-6 border-l border-border pl-6">
+        <Stagger as="ul" className="relative ml-3 space-y-6 border-l border-border pl-6">
           {education.map((item, index) => (
             <motion.li
               key={`${item.institution}-${item.degree ?? 'unknown'}-${index}`}

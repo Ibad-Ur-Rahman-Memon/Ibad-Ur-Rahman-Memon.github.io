@@ -28,7 +28,7 @@ export function PublicationSection() {
         {publications.length === 0 ? (
           <p className="text-muted-foreground">Publication details will be added once verified.</p>
         ) : (
-          <Stagger className="space-y-4">
+          <Stagger as="ul" className="space-y-4">
             {publications.map((pub, index) => (
               <motion.li
                 key={`${pub.title}-${index}`}

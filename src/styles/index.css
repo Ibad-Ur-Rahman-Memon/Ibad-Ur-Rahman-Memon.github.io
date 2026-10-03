@@ -134,8 +134,15 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 1rem;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -432,12 +439,12 @@ p {
   background-color: var(--surface);
 }
 
-.nav-link[aria-current='true'] {
+.nav-link[aria-current='location'] {
   color: var(--accent);
   background-color: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
-.nav-link[aria-current='true']::after {
+.nav-link[aria-current='location']::after {
   content: '';
   position: absolute;
   left: 0.75rem;

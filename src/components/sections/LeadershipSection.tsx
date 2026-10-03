@@ -29,7 +29,7 @@ export function LeadershipSection() {
         {leadership.length === 0 ? (
           <p className="text-muted-foreground">Leadership details will be added once verified.</p>
         ) : (
-          <Stagger className="relative ml-3 space-y-6 border-l border-border pl-6">
+          <Stagger as="ul" className="relative ml-3 space-y-6 border-l border-border pl-6">
             {leadership.map((item, index) => (
               <motion.li
                 key={`${item.organization}-${item.role}-${index}`}

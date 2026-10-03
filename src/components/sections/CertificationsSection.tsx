@@ -47,7 +47,7 @@ export function CertificationsSection() {
             Certification details will be added once verified.
           </p>
         ) : (
-          <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger as="ul" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map((cert, index) => {
               const type = cert.type ?? 'course';
               const label = typeLabel[type] ?? typeLabel.course;
