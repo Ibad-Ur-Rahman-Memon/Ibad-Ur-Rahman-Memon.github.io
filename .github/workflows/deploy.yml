@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -34,10 +35,18 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify production build
+        run: |
+          echo "Checking production build..."
+          grep -E 'assets/.*\.js' dist/index.html
+          test -d dist/assets
+          echo "Build contents:"
+          find dist -maxdepth 2 -type f | sort
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
